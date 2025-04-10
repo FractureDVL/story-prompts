@@ -1,18 +1,8 @@
-import {LucideIcon} from "lucide-react"
-
-interface ItemNav {
-    name: string
-    url: string
-    icon: LucideIcon
-}
-
-interface NavProjectsProps {
-    items: ItemNav[]
-}
+import { NavProjectsProps} from "@/types/nav";
 
 function NavProjects({items}: NavProjectsProps) {
     return (
-        <nav className="flex flex-col gap-2">
+        <nav className="flex flex-col gap-2 bg-white">
             {items.map((item) => (
                 <a
                     key={item.name}

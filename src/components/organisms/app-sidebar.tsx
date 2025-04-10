@@ -9,39 +9,43 @@ import {
     SidebarMenuItem,
     SidebarRail,
 } from "@/components/ui/sidebar"
-import {fetchProjects} from "@/lib/api"
-import {NavMain} from "@/components/molecules/nav-main";
-import {Project} from "@/types/project";
+import { fetchProjects } from "@/lib/api"
+import { NavMain } from "@/components/molecules/nav-main";
+import { Project } from "@/types/project";
 
-
-export default function AppSidebar({...props}) {
-    const [projects, setProjects] = useState<Project[]>([])
-    const [loading, setLoading] = useState(true)
+function AppSidebar({...props}) {
+    const titleSidebar = "Prompt History"
+    const [_projects, setProjects] = useState<Project[]>([])
+    const [_loading, setLoading] = useState(true)
 
     useEffect(() => {
         const loadProjects = async () => {
             try {
-                const projectsData = await fetchProjects()
-                setProjects(projectsData)
+                const projectsData = await fetchProjects();
+                setProjects(projectsData);
             } catch (error) {
-                console.error("Failed to load projects:", error)
+                console.error("Failed to load projects:", error);
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
-        }
-        loadProjects()
-    }, [])
+        };
+
+        loadProjects();
+    }, []);
 
     return (
         <Sidebar collapsible="offcanvas" {...props}>
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-                            <a href="#">
-                                <Code className="h-6 w-6"/>
-                                <span className="text-base font-semibold">Prompt History</span>
-                            </a>
+                        <SidebarMenuButton size="lg" className="gap-4">
+                            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                                <Code className="size-4"/>
+                            </div>
+                            <div className="grid flex-1 text-left font-semibold">
+                                <span className="truncate font-semibold"/>
+                                <span className="truncate text-xl">{titleSidebar}</span>
+                            </div>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
@@ -58,3 +62,5 @@ export default function AppSidebar({...props}) {
         </Sidebar>
     )
 }
+
+export default AppSidebar;

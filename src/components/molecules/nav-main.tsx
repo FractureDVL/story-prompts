@@ -18,37 +18,42 @@ import { NavItem } from "@/types/nav";
 
 const items: NavItem[] = [
     {
+        id: "jpc",
         title: "JPC",
-        url: "/projects/JPC/creacion-ui/",
+        url: "/projects/jpc/creacion-ui/",
         icon: Folder,
         isActive: true,
         items: [
             {
                 title: "Creación UI",
-                url: "/projects/JPC/creacion-ui/",
+                url: "/projects/jpc/creacion-ui/",
                 icon: GitBranch
             }
         ]
     },
     {
+        id: "datik",
         title: "Datik",
-        url: "/projects/Datik/login/",
+        url: "/projects/datik/login/",
         icon: Folder,
         isActive: false,
         items: [
             {
                 title: "Login",
-                url: "/projects/Datik/login/",
+                url: "/projects/datik/login/",
                 icon: GitBranch
             }
         ]
     }
 ];
-//{ items }: { items: NavItem[] }
+
 export function NavMain() {
+
+    const title = "Repositorios";
+
     return (
         <SidebarGroup>
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
+            <SidebarGroupLabel>{title}</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
                     <Collapsible
@@ -71,7 +76,7 @@ export function NavMain() {
                                         <SidebarMenuSubItem key={subItem.title}>
                                             <SidebarMenuSubButton asChild>
                                                 <a href={subItem.url}>
-                                                    {subItem.icon && <subItem.icon />}
+                                                    <GitBranch/>
                                                     <span>{subItem.title}</span>
                                                 </a>
                                             </SidebarMenuSubButton>
